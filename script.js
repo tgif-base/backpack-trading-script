@@ -39,9 +39,14 @@ const clickTab = async (tabName) => {
 
 // Function to click Max button
 const clickMax = async () => {
-  const maxButton = document.querySelector('.flex.items-center.justify-center.flex-row.cursor-pointer.rounded-full.bg-baseBackgroundL1');
-  if (maxButton) maxButton.click();
-  await new Promise(resolve => setTimeout(resolve, 100));
+  const buttons = document.querySelectorAll('.flex.items-center.justify-center.flex-row.cursor-pointer.rounded-full.bg-baseBackgroundL1');
+  const maxButton = Array.from(buttons).find(button => button.textContent.trim() === 'Max');
+  if (maxButton) {
+    maxButton.click();
+    await new Promise(resolve => setTimeout(resolve, 100));
+  } else {
+    console.error('Max button not found');
+  }
 };
 
 // Function to click action buttons (Buy/Sell)
